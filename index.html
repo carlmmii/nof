@@ -19,8 +19,8 @@
     {
       ctx=document.getElementById('canvas').getContext('2d');
 
-      ctx.canvas.width  = window.innerWidth;
-      ctx.canvas.height = window.innerHeight;
+      ctx.canvas.width  = window.innerWidth-1;
+      ctx.canvas.height = window.innerHeight-1;
 
       ctx.fillStyle='rgb(0,0,0)';
       ctx.fillText('Hello World',50,50);
