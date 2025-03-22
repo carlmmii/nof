@@ -6,11 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hello World</title>
 
+    <style type='css'>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+      
+      </style>
 <script language="javascript">
 
+  function init()
+    {
+      ctx=document.getElementById('canvas').getContext('2d');
+
+      ctx.canvas.width  = window.innerWidth;
+      ctx.canvas.height = window.innerHeight;
+
+      ctx.fillStyle='rgb(0,0,0)';
+      ctx.fillText('Hello World',50,50);
+    }
 </script>
   </head>
-  <body>
-    Jesse sux!
+  <body onload=init()>
+    <canvas id='canvas'></canvas>
   </body>
 </html>
