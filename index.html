@@ -1,33 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hello World</title>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Hello World</title>
 
-    <style type='css'>
-      body {
-        margin: 0px;
-        padding: 0px;
-      }
-      
-      </style>
+<style>
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+canvas {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+</style>
 <script language="javascript">
 
-  function init()
-    {
-      ctx=document.getElementById('canvas').getContext('2d');
+var ctx;
+var canvas;
 
-      ctx.canvas.width  = window.innerWidth-1;
-      ctx.canvas.height = window.innerHeight-1;
+var frame_count=0;
 
-      ctx.fillStyle='rgb(0,0,0)';
-      ctx.fillText('Hello World',50,50);
-    }
+var mouse={
+	x:0,
+	y:0
+};
+
+function init()
+{
+	canvas=document.querySelector('canvas');
+	ctx=canvas.getContext('2d');
+	
+	update_canvas_size();
+	window.addEventListener('resize',function(){update_canvas_size});
+	window.addEventListener('mousemove',function(e){mouse_move(e)});
+	
+	animate();
+}
+
+function mouse_move(e)
+{
+	mouse.x=e.offsetX;
+	mouse.y=e.offsetY;
+}
+
+function update_canvas_size()
+{
+	canvas.width  = window.innerWidth;
+	canvas.height = window.innerHeight;
+}
+
+var c_w,c_h;
+
+function update_dims()
+{
+	c_w=canvas.width;
+	c_h=canvas.height;
+}
+
+function animate()
+{
+	requestAnimationFrame(function(){draw()});
+}
+
+function draw()
+{
+	animate();
+	update_dims();
+	ctx.clearRect(0,0,c_w,c_h);
+	
+	
+	ctx.fillStyle='rgb(0,0,0)';
+	ctx.fillRect(0,0,c_w,c_h);
+	
+	ctx.fillStyle='rgb(255,255,255)';
+	frame_count++;
+	ctx.fillText(frame_count,2,10);
+	ctx.fillText('Jesse Sux',mouse.x,mouse.y)
+}
+
 </script>
-  </head>
-  <body onload=init()>
-    <canvas id='canvas'></canvas>
-  </body>
+</head>
+
+
+
+<body onload=init()>
+
+
+	<canvas></canvas>
+
+
+</body>
 </html>
